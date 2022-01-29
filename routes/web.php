@@ -29,22 +29,25 @@ Route::view('/about', 'about', ['name' => '"Мир новостей"'])->name('a
 //news routes
 
 //admin
-Route::group(['prefix' => 'admin', 'as' => 'admin.'], function() {
+Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::resource('/news', AdminNewsController::class);
     Route::resource('/categories', AdminCategoryController::class);
 });
 
-Route::get('/news/categories', [CategoryController::class, 'allCategories'])
-->name('news.categories');
+
+Route::name('news.')
+    ->prefix('news')
+    ->group(function () {
+        Route::get('/', [NewsController::class, 'index'])->name('index');
+        Route::get('/categories', [CategoryController::class, 'allCategories'])->name('categories');
+        Route::get('/oneCategory/{id}', [CategoryController::class, 'oneCategory'])->name('oneCategory')->where('id', '[0-9]+');
+        Route::get('/{id}', [NewsController::class, 'show'])->name('oneNews')->where('id', '[0-9]+');
+    });
 
 
-Route::get('/news/index', [NewsController::class, 'index'])
-->name('news.index');
-
+/*Route::get('/news', [NewsController::class, 'index'])
+    ->name('news.index');
 Route::get('/news/{id}', [NewsController::class, 'show'])
-->name('oneNews')
-->where('id', '[0-9]+');
-
-/*Route::get('hello/{name}',
-fn($name) => "Hello, {$name}");
+    ->where('id', '\d+')
+    ->name('news.show');
 */

@@ -12,8 +12,8 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    /*
-    public function getNews()
+    
+    /*public function getNews()
     {
         $faker = Factory::create();
         $news = [];
@@ -81,8 +81,8 @@ class Controller extends BaseController
             1 => [
                 'id' => 1,
                 'title' => 'Новость 1',
-                'text' => 'А у нас новость 1 и она очень хорошая!',           
-                'category_id' => ''
+                'text' => 'А у нас новость 1 и она очень хорошая!',
+                'category_id' => 1
             ],
             2 => [
                 'id' => 2,
@@ -105,33 +105,37 @@ class Controller extends BaseController
         ];
 
         return $news;
-
     }
 
 
 
-    public function getNewsByCategoryId($id) 
+    /*public function getNewsByCategory()
     {
-        $news = [];
-        foreach ($this->getNews() as $item) {
-            if ($item['category_id'] == $id) {
-                $news[] = $item;
+        $categories = $this->getCategories();
+        $news = $this->getNews();
+        
+        foreach ($news as $item) {
+            $categoryItem = null;
+
+            foreach ($categories as $category) {
+                if ($category['id'] === $item['category_id']) {
+                    $categoryItem = $category;
+                }
             }
+
+            return $categoryItem;
+
+            //echo "\n\rNews: " . $item['title'] . " Category: " . $categoryItem['title'];
         }
-        return $news;
+    }*/
+
+    public function getCategoryById($id)
+    {
+        return $this->getCategories()[$id] ?? [];
     }
 
-public function getNewsById($id)
-{
-    return $this->getNews()[$id] ?? [];
-
-    /*foreach ($this->getNews() as $news) {
-    *  if ($news['id'] == $id) {
-    *        return $news;
-    *    }
-    *}
-    *return [];
-    */
-}
-
+    public function getNewsById($id)
+    {
+        return $this->getNews()[$id] ?? [];
+    }
 }
