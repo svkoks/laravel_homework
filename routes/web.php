@@ -24,12 +24,11 @@ Route::get('/', function () {
 
 Route::get('/', [IndexController::class, 'index'])->name('main');
 
-Route::view('/about', 'about', ['name' => '"Мир новостей"'])->name('about');
-
 //news routes
 
 //admin
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
+    Route::view('/', 'admin.index')->name('index');
     Route::resource('/news', AdminNewsController::class);
     Route::resource('/categories', AdminCategoryController::class);
 });

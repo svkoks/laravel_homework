@@ -1,32 +1,41 @@
 @extends('layouts.main')
 
-@section('menu')
-    @include('menu')
+@section('title')
+    @parent Новости
 @endsection
 
 @section('content')
-    <!--<a href="{{ route('news.categories') }}">Категории новостей</a>-->
-    <br>
-    <h2>Новости</h2>
+    <h2>Список новостей</h2>
     <p><i>Наши новости - все течет, все меняется!</i></p>
-    <br>
-    @forelse ($news as $item)
-        <strong><a href="{{ route('news.oneNews', $item['id']) }}">{{ $item['title'] }}</a></strong><br>
-    @empty
-        <h3>Новостей нет</h3>
-    @endforelse
-@endsection
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        @forelse ($news as $item)
+        
+        <div class="col">
+            <div class="card shadow-sm">
+                <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg"
+                    role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice"
+                    focusable="false">
+                    <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef"
+                        dy=".3em"><a href="{{ route('news.oneNews', $item['id']) }}">{{ $item['title'] }}</a></text>
+                </svg>
 
-
-{{--<h2>Список новостей</h2>
-<br>
-@foreach ($news as $newsItem)
-    <div>
-        <strong>
-            <a href="{{ route('news.show', ['id' => $newsItem['id']]) }}">{{ $newsItem['title'] }}</a>
-        </strong>
-        <p>{{ $newsItem['description'] }}</p>
-        <em>Автор: {{ $newsItem['author'] }}</em>
-        <hr>
+                <div class="card-body">
+                    {{--<div class="card-header">
+                        <strong><a href="{{ route('news.oneNews', $item['id']) }}">{{ $item['title'] }}</a></strong>
+                    </div>--}}
+                    <p class="card-text">{!! $item['text'] !!}</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-sm btn-outline-secondary">
+                                <a href="{{ route('news.oneNews', $item['id']) }}">Смотреть подробнее</a></button>
+                        </div>
+                        <small class="text-muted">{{ now('Europe/Moscow') }}</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @empty
+            <h3>Новостей нет</h3>
+        @endforelse
     </div>
-@endforeach--}}
+@endsection
