@@ -4,9 +4,6 @@
     @parent {{ $item['title'] }}
 @endsection
 
-@section('menu')
-    @include('menu')
-@endsection
 
 @section('content')
 <h3>Новость </h3>
