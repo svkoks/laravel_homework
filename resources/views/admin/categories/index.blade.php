@@ -16,4 +16,7 @@
 
 @section('content')
     {{--здесь будет база-контент--}}
+    <div class="table-responsive">
+        {{----}}
+    </div>
 @endsection
