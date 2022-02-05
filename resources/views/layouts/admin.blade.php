@@ -47,9 +47,9 @@
                 </div>
 
 
-                <div class="table-responsive">
-                    @yield('content')
-                </div>
+
+                @yield('content')
+
             </main>
         </div>
     </div>
