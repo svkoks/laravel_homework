@@ -38,6 +38,11 @@ class NewsController extends Controller
         $request->validate([
             'title' => ['required', 'string', 'min:5']
         ]);
+
+        /*$data = json_encode($request->all());
+        file_put_contents(public_path('data/data.json'), $data);
+
+        return response()->json($request->all());*/
     }
 
     /**

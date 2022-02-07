@@ -15,7 +15,9 @@
                         <li> <a href="{{ route('main') }}">Главная</a><br></li>
                         <li><a href="{{ route('news.categories') }}">Категории новостей</a><br></li>
                         <li><a href="{{ route('news.index') }}">Список новостей</a><br></li>
+                        <br>
                         <li><a href="{{ route('admin.index') }}">Админка</a><br></li>
+                        <li><a href="{{ route('user.index') }}">Личный кабинет</a><br></li>
                     </ul>
                 </div>
             </div>
