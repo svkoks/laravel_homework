@@ -26,7 +26,7 @@
                 </p>
                 <p>
                     <a href="{{ route('news.categories') }}" class="btn btn-primary my-2">Категории новостей</a>
-                    <a href="{{ route('news.index') }}" class="btn btn-secondary my-2">Список новостей</a>
+                    <a href="{{ route('user.index') }}" class="btn btn-secondary my-2">Личный кабинет</a>
                 </p>
                 <hr>
             </div>

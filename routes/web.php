@@ -6,6 +6,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\IndexController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,6 +44,12 @@ Route::name('news.')
         Route::get('/{id}', [NewsController::class, 'show'])->name('oneNews')->where('id', '[0-9]+');
     });
 
+Route::name('user.')
+    ->prefix('user')
+    ->group(function () {
+        Route::get('/', [UserController::class, 'index'])->name('index');
+        Route::get('/download', [UserController::class, 'download'])->name('download');
+    });
 
 /*Route::get('/news', [NewsController::class, 'index'])
     ->name('news.index');
