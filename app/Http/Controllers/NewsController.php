@@ -7,13 +7,20 @@ use Illuminate\Http\Request;
 
 class NewsController extends Controller
 {
-    public function index() {
-        $news = $this->getNews();
-        return view('news.index')->with('news', $news);
+    public function index() 
+    {
+        $model= new News();
+        $news = $model->getNews();
+        
+        return view('news.index')->with('newsList', $news);
     }
 
-    public function show($id) {
-        $news = $this->getNewsById($id);
-        return view('news.oneNews')->with('item', $news);
+    public function show($id) 
+    {
+        $model= new News();
+        $news = $model->getNewsById($id);
+        
+        return view('news.oneNews')
+        ->with('news', $news);
     }
 }

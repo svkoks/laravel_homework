@@ -17,6 +17,31 @@
 @section('content')
     {{--здесь будет база-контент--}}
     <div class="table-responsive">
-        {{----}}
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>#ID</th>
+                    <th>Заголовок</th>
+                    <th>Текст</th>
+                    <th>Опции</th>
+                </tr>
+            <tbody>
+                @forelse ($categories as $category)
+                    <tr>
+                        <td>{{ $category->id }}</td>
+                        <td>{{ $category->title }}</td>
+                        <td>{{ $category->text }}</td>
+                        <td><a href="{{ route('admin.categories.edit', ['category' => $category->id]) }}"> Ред.</a> &nbsp;
+                            <a href="javascript:;" style="color: red"> Уд.</a>
+                        </td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="6">Записей нет</td>
+                    </tr>
+                @endforelse
+            </tbody>
+            </thead>
+        </table>
     </div>
 @endsection

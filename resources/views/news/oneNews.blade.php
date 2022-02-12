@@ -1,16 +1,15 @@
 @extends('layouts.main')
 
 @section('title')
-    @parent {{ $item['title'] }}
+    @parent {{ $news->title }}
 @endsection
 
 
 @section('content')
 <h3>Новость </h3>
 <div>
-    <strong>{{ $item['title'] }}</strong><br>
-    <p>{{ $item['text'] }}</p>
-    <em>{{ $item['category_id'] }}</em>
+    <strong>{{ $news->title }}</strong><br>
+    <p>{{ $news->text }}</p>
     <hr>
 </div>
 @endsection
